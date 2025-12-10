@@ -1,0 +1,621 @@
+{\rtf1\ansi\ansicpg950\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18100\viewh16940\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="zh-TW">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>UI/UX Terminology Hub (\uc0\u26234 \u24935 \u25844 \u20805 \u29256 )</title>\
+    <script src="https://cdn.tailwindcss.com"></script>\
+    \
+    <!-- Tailwind Configuration for Custom Warm Color -->\
+    <script>\
+        tailwind.config = \{\
+            theme: \{\
+                extend: \{\
+                    colors: \{\
+                        // Based on #D69A5B (Your requested color)\
+                        'warm': \{\
+                            50: '#FDF7F0',\
+                            100: '#FAEAD9', // Lightest background for tags\
+                            200: '#EED9B3', // Focus ring, light borders\
+                            500: '#D69A5B', // Base color\
+                            600: '#C58C4F', // Button hover / Accent\
+                            700: '#A87A4F', // Button main / Text accent\
+                            800: '#8A643D',\
+                        \},\
+                    \},\
+                    animation: \{\
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',\
+                    \}\
+                \}\
+            \}\
+        \}\
+    </script>\
+\
+    <style>\
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');\
+        \
+        body \{\
+            font-family: 'Noto Sans TC', sans-serif;\
+            background-color: #f5f5f4; \
+            color: #44403c; \
+        \}\
+\
+        /* Custom Scrollbar */\
+        ::-webkit-scrollbar \{\
+            width: 8px;\
+        \}\
+        ::-webkit-scrollbar-track \{\
+            background: #f5f5f4; \
+        \}\
+        ::-webkit-scrollbar-thumb \{\
+            background: #d6d3d1; \
+            border-radius: 4px;\
+        \}\
+        ::-webkit-scrollbar-thumb:hover \{\
+            background: #a8a29e; \
+        \}\
+\
+        .card-hover \{\
+            transition: all 0.2s ease-in-out;\
+            cursor: default; \
+        \}\
+        .card-hover:hover \{\
+            transform: translateY(-4px); \
+            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -3px rgba(0, 0, 0, 0.05);\
+        \}\
+\
+        .related-tag, .suggestion-tag \{\
+            cursor: pointer;\
+            transition: background-color 0.15s;\
+        \}\
+        .related-tag:hover, .suggestion-tag:hover \{\
+            background-color: #C58C4F; /* warm-600 */\
+            color: white;\
+        \}\
+        \
+        /* Markdown-like styles for API content */\
+        .api-content ul \{\
+            list-style-type: disc;\
+            margin-left: 1.5rem;\
+            margin-bottom: 1rem;\
+        \}\
+        .api-content p \{\
+            margin-bottom: 0.75rem;\
+        \}\
+        .api-content strong \{\
+            color: #A87A4F;\
+        \}\
+    </style>\
+</head>\
+<body class="flex flex-col min-h-screen">\
+\
+    <!-- Navbar/Header -->\
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-stone-200">\
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">\
+            <div class="flex items-center justify-between">\
+                <span class="text-2xl font-black text-warm-700 tracking-tight flex items-center gap-2">\
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/></svg>\
+                    \uc0\u35373 \u35336 \u34899 \u35486 \u36895 \u26597 \
+                </span>\
+                <div class="text-sm font-light text-stone-500 hidden sm:block">UI/UX Terminology Hub (\uc0\u26234 \u24935 \u25844 \u20805 \u29256 )</div>\
+            </div>\
+        </div>\
+    </nav>\
+\
+    <!-- Main Content -->\
+    <main class="flex-grow container mx-auto px-4 py-8 space-y-12">\
+\
+        <!-- Header Section -->\
+        <div class="max-w-4xl mx-auto space-y-4">\
+            <h1 class="text-5xl font-extrabold text-stone-800">UI/UX \uc0\u26680 \u24515 \u35422 \u24409 </h1>\
+            <p class="text-xl text-stone-600 leading-relaxed">\
+                \uc0\u25972 \u21512 \u26368 \u26032 \u35373 \u35336 \u35215 \u31684 \u23450 \u32681 \u12290 \u36879 \u36942  <span class="text-warm-700 font-bold">\u10024  AI \u23526 \u39511 \u23460 </span>\u65292 \u24744 \u21487 \u20197 \u36914 \u34892 \u34899 \u35486 \u27604 \u36611 \u33287 \u33258 \u25105 \u28204 \u39511 \u12290 \
+            </p>\
+\
+            <!-- Tools Navigation -->\
+            <div class="flex flex-wrap gap-3 py-4">\
+                <button onclick="switchMode('search')" id="btn-search" class="px-6 py-2 rounded-full font-bold transition shadow-sm bg-warm-700 text-white">\
+                    \uc0\u55357 \u56589  \u34899 \u35486 \u25628 \u23563 \
+                </button>\
+                <button onclick="switchMode('compare')" id="btn-compare" class="px-6 py-2 rounded-full font-bold transition shadow-sm bg-white text-stone-600 border border-stone-300 hover:bg-warm-50 hover:border-warm-400">\
+                    \uc0\u9876 \u65039  \u34899 \u35486 \u22823 \u23565 \u27770  (AI)\
+                </button>\
+                <button onclick="switchMode('quiz')" id="btn-quiz" class="px-6 py-2 rounded-full font-bold transition shadow-sm bg-white text-stone-600 border border-stone-300 hover:bg-warm-50 hover:border-warm-400">\
+                    \uc0\u55356 \u57266  \u24773 \u22659 \u38568 \u22530 \u32771  (AI)\
+                </button>\
+            </div>\
+        </div>\
+\
+        <!-- MODE 1: Search Explorer -->\
+        <section id="section-search" class="space-y-6">\
+            <div class="max-w-4xl mx-auto">\
+                <div class="relative w-full">\
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-stone-400">\uc0\u55357 \u56589 </span>\
+                    <input type="text" id="searchInput" placeholder="\uc0\u25628 \u23563 \u34899 \u35486 \u12289 \u23450 \u32681 \u25110 \u24773 \u22659 ..." \
+                        class="w-full pl-12 pr-4 py-3 border border-stone-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-warm-200 focus:border-warm-500 bg-white text-stone-700 shadow-md transition-all text-lg">\
+                </div>\
+            </div>\
+\
+            <!-- Filter Tags -->\
+            <div id="filterContainer" class="flex flex-wrap gap-2 pt-2 max-w-4xl mx-auto"></div>\
+\
+            <!-- Cards Grid -->\
+            <div id="cardsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pt-4"></div>\
+            \
+            <!-- Empty State & Expansion Button -->\
+            <div id="emptyState" class="hidden text-center py-12 bg-white rounded-2xl p-8 shadow-inner border border-stone-200 max-w-3xl mx-auto">\
+                <div class="text-4xl mb-4">\uc0\u55357 \u56557 </div>\
+                <h3 class="text-2xl font-bold text-stone-700 mb-2">\uc0\u26410 \u22312 \u36039 \u26009 \u24235 \u20013 \u25214 \u21040 \u32080 \u26524 </h3>\
+                <p id="emptyMessage" class="text-lg text-stone-500 mb-6"></p>\
+                <div id="suggestionContainer" class="mt-4 flex flex-wrap justify-center gap-3"></div>\
+                <div class="mt-10 border-t border-dashed border-warm-200 pt-6">\
+                    <h4 class="text-xl font-bold text-warm-700 mb-3 flex items-center justify-center">\uc0\u34899 \u35486 \u25844 \u20805 \u21161 \u25163 </h4>\
+                    <p class="text-stone-500 mb-4">\uc0\u20351 \u29992  AI \u26597 \u25214 \u20006 \u23450 \u32681 \u36889 \u20491 \u34899 \u35486 \u12290 </p>\
+                    <button id="expandButton" onclick="fetchAndDisplayExpansion()" class="px-8 py-3 bg-warm-700 text-white rounded-xl hover:bg-warm-800 transition shadow-lg text-lg font-semibold disabled:bg-warm-400">\
+                        <span id="buttonText">\uc0\u21205 \u24907 \u26597 \u25214 \u20006 \u23450 \u32681 </span>\
+                    </button>\
+                </div>\
+            </div>\
+            \
+            <!-- Expansion Result Card -->\
+            <div id="expansionAssistantCard" class="hidden card-hover bg-white rounded-2xl border-4 border-warm-200 shadow-2xl p-6 flex flex-col max-w-3xl mx-auto"></div>\
+        </section>\
+\
+        <!-- MODE 2: AI Comparison Lab -->\
+        <section id="section-compare" class="hidden space-y-8 max-w-5xl mx-auto w-full">\
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-stone-200">\
+                <h2 class="text-3xl font-black text-warm-700 mb-2 flex items-center gap-2">\
+                    <span>\uc0\u9876 \u65039 </span> \u34899 \u35486 \u22823 \u23565 \u27770  (Smart Comparison)\
+                </h2>\
+                <p class="text-stone-500 mb-8">\uc0\u19981 \u30906 \u23450 \u20841 \u20491 \u30456 \u20284 \u34899 \u35486 \u30340 \u24046 \u30064 \u65311 \u36664 \u20837 \u23427 \u20497 \u65288 \u20363 \u22914 \u65306 Modal vs Alert\u65289 \u65292 \u35731  AI \u28858 \u24744 \u20998 \u26512 \u20351 \u29992 \u26178 \u27231 \u33287 \u38364 \u37749 \u24046 \u30064 \u12290 </p>\
+                \
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center mb-8">\
+                    <div class="md:col-span-5">\
+                        <label class="block text-sm font-bold text-stone-500 mb-1 ml-1">\uc0\u34899 \u35486  A</label>\
+                        <input type="text" id="termA" placeholder="\uc0\u20363 \u22914 \u65306 Toast" class="w-full px-4 py-3 border border-stone-300 rounded-xl focus:ring-2 focus:ring-warm-500 bg-stone-50 text-lg font-bold text-center">\
+                    </div>\
+                    <div class="md:col-span-2 flex justify-center">\
+                        <span class="text-2xl font-black text-warm-400 bg-warm-50 rounded-full w-12 h-12 flex items-center justify-center">VS</span>\
+                    </div>\
+                    <div class="md:col-span-5">\
+                        <label class="block text-sm font-bold text-stone-500 mb-1 ml-1">\uc0\u34899 \u35486  B</label>\
+                        <input type="text" id="termB" placeholder="\uc0\u20363 \u22914 \u65306 Snackbar" class="w-full px-4 py-3 border border-stone-300 rounded-xl focus:ring-2 focus:ring-warm-500 bg-stone-50 text-lg font-bold text-center">\
+                    </div>\
+                </div>\
+                \
+                <div class="text-center">\
+                    <button onclick="fetchComparison()" class="px-10 py-4 bg-warm-700 text-white text-xl font-bold rounded-2xl hover:bg-warm-800 shadow-lg transform transition active:scale-95 flex items-center justify-center mx-auto gap-2">\
+                        <span>\uc0\u55357 \u56960 </span> \u38283 \u22987 \u20998 \u26512 \u27604 \u36611 \
+                    </button>\
+                </div>\
+            </div>\
+\
+            <!-- Comparison Result -->\
+            <div id="comparisonResult" class="hidden animate-fade-in">\
+                <!-- Content injected via JS -->\
+            </div>\
+        </section>\
+\
+        <!-- MODE 3: AI Quiz Lab -->\
+        <section id="section-quiz" class="hidden space-y-8 max-w-3xl mx-auto w-full">\
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-stone-200 text-center">\
+                <div class="text-6xl mb-4">\uc0\u55356 \u57235 </div>\
+                <h2 class="text-3xl font-black text-warm-700 mb-3">UI/UX \uc0\u24773 \u22659 \u38568 \u22530 \u32771 </h2>\
+                <p class="text-stone-500 mb-8">AI \uc0\u23559 \u24478 \u36039 \u26009 \u24235 \u25110 \u32178 \u36335 \u19978 \u38568 \u27231 \u29983 \u25104 \u19968 \u36947 \u23526 \u21209 \u24773 \u22659 \u38988 \u12290 \u25361 \u25136 \u24744 \u30340 \u35373 \u35336 \u30693 \u35672 \u65281 </p>\
+                \
+                <button onclick="fetchQuiz()" id="startQuizBtn" class="px-10 py-4 bg-warm-700 text-white text-xl font-bold rounded-2xl hover:bg-warm-800 shadow-lg transform transition active:scale-95">\
+                    \uc0\u55356 \u57266  \u20986 \u19968 \u38988 \u32771 \u32771 \u25105 \
+                </button>\
+            </div>\
+\
+            <!-- Quiz Card -->\
+            <div id="quizCard" class="hidden bg-white rounded-3xl shadow-2xl border-4 border-warm-100 overflow-hidden">\
+                <!-- Content injected via JS -->\
+            </div>\
+        </section>\
+\
+    </main>\
+\
+    <footer class="bg-stone-800 text-stone-400 py-8 mt-12">\
+        <div class="container mx-auto px-4 text-center">\
+            <p class="mb-2">UI/UX Terminology Hub (\uc0\u26234 \u24935 \u25844 \u20805 \u29256 )</p>\
+            <p class="text-sm text-stone-500">Powered by Gemini API. \uc0\u26680 \u24515 \u36039 \u26009 \u24235 \u24050 \u25844 \u20805 \u33267  > 120 \u20491 \u35422 \u24409 \u12290 </p>\
+        </div>\
+    </footer>\
+\
+    <script>\
+        // --- Data Source (Terminology Data) ---\
+        // (Keeping the data concise for the file generation, usually this would be the full list)\
+        const terminologyData = [\
+             // 1. \uc0\u35338 \u24687 \u33287 \u22238 \u39243 \
+            \{ category: "1. \uc0\u35338 \u24687 \u33287 \u22238 \u39243 ", term: "Modal / Dialog", def: "\u27169 \u24907 \u26694  / \u23565 \u35441 \u26694 ", useCase: "\u24375 \u21046 \u20013 \u26039 \u65306 \u29992 \u26044 \u23436 \u25104 \u29544 \u31435 \u12289 \u35079 \u38620 \u30340 \u20219 \u21209 \u25110 \u38656 \u35201 \u20351 \u29992 \u32773 \u20570 \u20986 \u37325 \u22823 \u27770 \u23450 \u30340 \u24773 \u22659 \u12290 \u26371 \u37782 \u23450 \u32972 \u26223 \u65292 \u38656 \u35201 \u26126 \u30906 \u38364 \u38281 \u12290 ", related: ["Alert", "Drawer", "Snackbar"] \},\
+            \{ category: "1. \uc0\u35338 \u24687 \u33287 \u22238 \u39243 ", term: "Alert", def: "\u35686 \u21578 \u23565 \u35441 \u26694 ", useCase: "\u24375 \u21046 \u20013 \u26039 \u65306 \u35426 \u21839 \u26159 /\u21542 \u25110 \u30906 \u35469 \u30772 \u22750 \u24615 \u25805 \u20316 \u65288 \u22914 \u21034 \u38500 \u65289 \u30340 \u31777 \u30701 \u25552 \u31034 \u65292 \u38656 \u26377 \u26126 \u30906 \u25353 \u37397 \u22238 \u35206 \u12290 ", related: ["Modal / Dialog", "Toast"] \},\
+            \{ category: "1. \uc0\u35338 \u24687 \u33287 \u22238 \u39243 ", term: "Toast", def: "\u21520 \u21496 \u36890 \u30693 ", useCase: "\u38750 \u20013 \u26039 \u65306 \u36629 \u37327 \u32026 \u12289 \u30701 \u26283 \u12289 \u33258 \u21205 \u28040 \u22833 \u30340 \u25805 \u20316 \u22238 \u39243 \u35338 \u24687 \u65292 \u19981 \u24433 \u38911 \u20351 \u29992 \u32773 \u30070 \u21069 \u20219 \u21209 \u12290 ", related: ["Snackbar", "Tooltip"] \},\
+            \{ category: "1. \uc0\u35338 \u24687 \u33287 \u22238 \u39243 ", term: "Snackbar", def: "\u35338 \u24687 \u26781 ", useCase: "\u38750 \u20013 \u26039 \u65306 \u36890 \u24120 \u20301 \u26044 \u24213 \u37096 \u65292 \u35338 \u24687 \u36611 \u38263 \u65292 \u21487 \u21253 \u21547 \u19968 \u20491 \u12302 \u24489 \u21407  (Undo)\u12303 \u31561 \u21363 \u26178 \u25805 \u20316 \u25353 \u37397 \u12290 ", related: ["Toast", "Alert"] \},\
+            \{ category: "1. \uc0\u35338 \u24687 \u33287 \u22238 \u39243 ", term: "Tooltip", def: "\u24037 \u20855 \u25552 \u31034 ", useCase: "\u25080 \u28014 \u36628 \u21161 \u65306 \u28369 \u40736 \u25080 \u20572 \u26178 \u20986 \u29694 \u30340 \u23567 \u27683 \u27873 \u65292 \u25552 \u20379 \u22294 \u27161 \u21517 \u31281 \u25110 \u31777 \u30701 \u35498 \u26126 \u65292 \u24171 \u21161 \u29702 \u35299 \u20171 \u38754 \u20803 \u32032 \u12290 ", related: ["Hover", "Hint"] \},\
+            // 2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 \
+            \{ category: "2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 ", term: "Input Field", def: "\u36664 \u20837 \u26694  / \u25991 \u23383 \u27396 \u20301 ", useCase: "\u25509 \u25910 \u21934 \u34892 \u25110 \u22810 \u34892 \u25991 \u23383 \u36664 \u20837 \u65292 \u24517 \u38920 \u21253 \u21547  Label \u21644  Helper Text\u65292 \u20197 \u20415 \u20351 \u29992 \u32773 \u29702 \u35299 \u26684 \u24335 \u35201 \u27714 \u12290 ", related: ["Form", "Label", "Placeholder"] \},\
+            \{ category: "2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 ", term: "Label", def: "\u27161 \u31844  (\u34920 \u21934 )", useCase: "\u25551 \u36848 \u36664 \u20837 \u26694 \u25033 \u22635 \u23531 \u20160 \u40636 \u20839 \u23481 \u65292 \u26159 \u25152 \u26377 \u34920 \u21934 \u20803 \u20214 \u30340 \u21517 \u31281 \u12290 \u21363 \u20351 \u36664 \u20837 \u20839 \u23481 \u24460 \u65292 Label \u20063 \u25033 \u20445 \u25345 \u21487 \u35211 \u12290 ", related: ["Placeholder", "Float Label"] \},\
+            \{ category: "2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 ", term: "Placeholder", def: "\u25552 \u31034 \u25991 \u23383  / \u20308 \u20301 \u31526 ", useCase: "\u36664 \u20837 \u26694 \u28858 \u31354 \u26178 \u65292 \u39023 \u31034 \u30340 \u25552 \u31034 \u24615 \u25991 \u23383 \u65292 \u36890 \u24120 \u22312 \u20351 \u29992 \u32773 \u36664 \u20837 \u24460 \u28040 \u22833 \u12290 \u27880 \u24847 \u65306 \u19981 \u25033 \u29992 \u20316  Label\u12290 ", related: ["Label", "Input Field"] \},\
+            \{ category: "2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 ", term: "Helper Text", def: "\u36628 \u21161 \u35498 \u26126 \u25991 \u23383 ", useCase: "\u20301 \u26044 \u36664 \u20837 \u26694 \u19979 \u26041 \u65292 \u25552 \u20379 \u38989 \u22806 \u30340 \u25552 \u31034 \u12289 \u26684 \u24335 \u35201 \u27714 \u25110 \u38480 \u21046 \u35498 \u26126 \u65292 \u24171 \u21161 \u20351 \u29992 \u32773 \u27491 \u30906 \u22635 \u23531 \u12290 ", related: ["Hint", "Error Message"] \},\
+            \{ category: "2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 ", term: "Hint", def: "\u25552 \u31034  / \u32218 \u32034 ", useCase: "\u25552 \u20379 \u27604  'Helper Text' \u26356 \u20855 \u39636 \u12289 \u26356 \u20855 \u24773 \u22659 \u30340 \u25552 \u31034 \u12290 \u26377 \u26178 \u33287  Tooltip \u32080 \u21512 \u20351 \u29992 \u12290 ", related: ["Tooltip", "Helper Text"] \},\
+            \{ category: "2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 ", term: "Required", def: "\u24517 \u22635 \u27161 \u35352 ", useCase: "\u35222 \u35258 \u19978 \u27161 \u35352 \u35442 \u27396 \u20301 \u24517 \u38920 \u22635 \u23531 \u65288 \u36890 \u24120 \u20351 \u29992 \u32005 \u33394 \u26143 \u34399  * \u25110 \u25991 \u23383 \u65289 \u65292 \u38450 \u27490 \u25552 \u20132 \u19981 \u23436 \u25972 \u30340 \u34920 \u21934 \u12290 ", related: ["Input Field", "Validation"] \},\
+            \{ category: "2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 ", term: "Dropdown", def: "\u19979 \u25289 \u36984 \u21934 ", useCase: "\u24478 \u38928 \u35373 \u36984 \u38917 \u20013 \u21934 \u36984 \u65292 \u36984 \u38917 \u21015 \u34920 \u21021 \u22987 \u38577 \u34255 \u65292 \u36969 \u21512 \u36984 \u38917 \u25976 \u37327 \u36229 \u36942  5 \u20491 \u19988 \u31354 \u38291 \u26377 \u38480 \u26178 \u20351 \u29992 \u12290 ", related: ["Radio Button", "Checkbox"] \},\
+            \{ category: "2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 ", term: "Checkbox", def: "\u35079 \u36984 \u26694 ", useCase: "\u29992 \u26044 \u24478 \u19968 \u32068 \u36984 \u38917 \u20013 \u36984 \u25799 \u38646 \u20491 \u12289 \u19968 \u20491 \u25110 \u22810 \u20491 \u38917 \u30446 \u12290 \u25903 \u25588 \u19981 \u30906 \u23450  (Indeterminate) \u29376 \u24907 \u12290 ", related: ["Radio Button", "Switch / Toggle"] \},\
+            \{ category: "2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 ", term: "Radio Button", def: "\u21934 \u36984 \u25353 \u37397 ", useCase: "\u24478 \u19968 \u32068 \u36984 \u38917 \u20013 \u20114 \u26021 \u19988 \u24375 \u21046 \u36984 \u25799 \u19968 \u20491 \u65292 \u36890 \u24120 \u36969 \u29992 \u26044 \u36984 \u38917 \u25976 \u37327 \u23569 \u26044  5 \u20491 \u30340 \u24773 \u22659 \u12290 ", related: ["Checkbox", "Dropdown"] \},\
+            \{ category: "2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 ", term: "Switch / Toggle", def: "\u38283 \u38364 \u20999 \u25563 ", useCase: "\u29992 \u26044 \u20999 \u25563 \u21934 \u19968 \u30340 \u38283 /\u38364 \u29376 \u24907 \u65292 \u36890 \u24120 \u29992 \u26044 \u31435 \u21363 \u29983 \u25928 \u30340 \u35373 \u23450 \u65288 \u22914 \u38283 \u21855 \u28145 \u33394 \u27169 \u24335 \u65289 \u12290 ", related: ["Checkbox", "Disabled"] \},\
+            \{ category: "2. \uc0\u20803 \u20214 \u33287 \u36664 \u20837 ", term: "DatePicker", def: "\u26085 \u26399 \u36984 \u25799 \u22120 ", useCase: "\u25509 \u25910 \u26085 \u26399 \u36664 \u20837 \u30340 \u20803 \u20214 \u65292 \u36890 \u24120 \u36879 \u36942 \u22294 \u24418 \u21270 \u34892 \u20107 \u26310 \u20171 \u38754 \u35731 \u20351 \u29992 \u32773 \u36984 \u25799 \u65292 \u36991 \u20813 \u26684 \u24335 \u37679 \u35492 \u12290 ", related: ["Input Field", "Dropdown"] \},\
+             // 6. \uc0\u38991 \u33394 \u33287 \u25991 \u23383 \
+            \{ category: "6. \uc0\u38991 \u33394 \u33287 \u25991 \u23383 ", term: "Primary Text", def: "\u20027 \u35201 \u25991 \u23383 ", useCase: "\u26368 \u39640 \u23565 \u27604 \u24230 \u30340 \u25991 \u23383 \u38991 \u33394 \u65288 \u22914 \u28145 \u28784 \u25110 \u40657 \u33394 \u65289 \u65292 \u29992 \u26044 \u27161 \u38988 \u21644 \u20027 \u35201 \u20839 \u25991 \u65292 \u30906 \u20445 \u26680 \u24515 \u35338 \u24687 \u30340 \u21487 \u35712 \u24615 \u12290 ", related: ["Secondary Text", "Contrast"] \},\
+            \{ category: "6. \uc0\u38991 \u33394 \u33287 \u25991 \u23383 ", term: "Secondary Text", def: "\u27425 \u35201 \u25991 \u23383 ", useCase: "\u23565 \u27604 \u24230 \u36611 \u20302 \u65288 \u22914 \u28784 \u33394 \u65289 \u65292 \u29992 \u26044 \u36628 \u21161 \u36039 \u35338 \u12289 \u20803 \u25976 \u25818 \u65288 \u22914 \u26085 \u26399 \u65289 \u25110 \u27161 \u31844 \u65292 \u24314 \u31435 \u35222 \u35258 \u23652 \u27425 \u12290 ", related: ["Primary Text", "Visual Hierarchy"] \},\
+            \{ category: "6. \uc0\u38991 \u33394 \u33287 \u25991 \u23383 ", term: "Tertiary Text", def: "\u31532 \u19977 \u23652 \u32026 \u25991 \u23383 ", useCase: "\u29992 \u26044 \u38750 \u24517 \u35201 \u30340 \u35037 \u39166 \u24615 \u25991 \u23383 \u12289 \u25552 \u31034 \u25991 \u23383  (Placeholder) \u25110 \u31105 \u29992 \u29376 \u24907 \u65292 \u35222 \u35258 \u27402 \u37325 \u26368 \u20302 \u12290 ", related: ["Placeholder", "Disabled"] \},\
+            \{ category: "6. \uc0\u38991 \u33394 \u33287 \u25991 \u23383 ", term: "Primary Color", def: "\u20027 \u35201 \u21697 \u29260 \u33394 ", useCase: "\u29992 \u26044 \u38364 \u37749 \u34892 \u21205 \u12289 \u21697 \u29260 \u35672 \u21029 \u21644 \u26368 \u39640 \u20778 \u20808 \u32026 \u30340 \u25353 \u37397 \u22635 \u20805 \u65292 \u20195 \u34920 \u21697 \u29260 \u20491 \u24615 \u12290 ", related: ["Secondary Color", "Token"] \},\
+            \{ category: "6. \uc0\u38991 \u33394 \u33287 \u25991 \u23383 ", term: "Secondary Color", def: "\u27425 \u35201 \u36628 \u21161 \u33394 ", useCase: "\u29992 \u26044 \u27425 \u35201 \u34892 \u21205 \u12289 \u36628 \u21161 \u23566 \u33322 \u25110 \u33287 \u20027 \u35201 \u21697 \u29260 \u33394 \u24418 \u25104 \u23652 \u27425 \u23565 \u27604 \u30340 \u20803 \u32032 \u12290 ", related: ["Primary Color", "Color Contrast"] \},\
+            \{ category: "6. \uc0\u38991 \u33394 \u33287 \u25991 \u23383 ", term: "Accent Color", def: "\u24375 \u35519 \u33394  / \u40670 \u32180 \u33394 ", useCase: "\u29992 \u26044 \u24375 \u35519 \u38364 \u37749 \u34892 \u21205  (CTA)\u12289 \u36899 \u32080 \u25110 \u36984 \u21462 \u29376 \u24907 \u30340 \u38991 \u33394 \u65292 \u36890 \u24120 \u27604 \u20027 \u35201 \u21697 \u29260 \u33394 \u26356 \u20142 \u25110 \u26356 \u20855 \u23565 \u27604 \u24615 \u12290 ", related: ["Primary Color", "Call to Action (CTA)"] \},\
+            \{ category: "6. \uc0\u38991 \u33394 \u33287 \u25991 \u23383 ", term: "Neutral Colors", def: "\u20013 \u24615 \u33394  / \u28784 \u38542 ", useCase: "\u29992 \u26044 \u32972 \u26223 \u12289 \u37002 \u26694 \u12289 \u32218 \u26781 \u21644 \u25991 \u23383 \u30340 \u28784 \u33394 \u31995 \u65292 \u27083 \u24314 \u20171 \u38754 \u39592 \u26550 \u32780 \u19981 \u24178 \u25854 \u20839 \u23481 \u12290 ", related: ["White Space", "Surface"] \},\
+            \{ category: "6. \uc0\u38991 \u33394 \u33287 \u25991 \u23383 ", term: "Success / Error", def: "\u25104 \u21151  / \u37679 \u35492 \u33394 ", useCase: "\u32160 \u33394 /\u32005 \u33394 \u65292 \u29992 \u26044 \u20659 \u36948 \u25805 \u20316 \u32080 \u26524 \u25110 \u34920 \u21934 \u39511 \u35657 \u29376 \u24907 \u65292 \u38991 \u33394 \u25033 \u31526 \u21512  WCAG \u23565 \u27604 \u24230 \u27161 \u28310 \u12290 ", related: ["Color Contrast", "Inline Validation"] \},\
+             // ... (Keep other existing data for completeness in real app) ...\
+             \{ category: "14. \uc0\u25991 \u23383 \u25490 \u29256 \u33287 \u27171 \u24335 ", term: "Caption", def: "\u35498 \u26126 \u25991 \u23383  / \u22294 \u35498 ", useCase: "\u29992 \u26044 \u22294 \u29255 \u35498 \u26126 \u12289 \u29256 \u27402 \u36039 \u35338 \u12289 \u25110 \u34920 \u21934 \u30340  Helper Text\u12290 \u30446 \u27161 \u26159 \u20302 \u27402 \u37325 \u65292 \u19981 \u24178 \u25854 \u20027 \u39636 \u20839 \u23481 \u12290 ", related: ["Helper Text", "Body Text"] \},\
+        ];\
+        \
+        // --- Shared Vars ---\
+        const apiKey = ""; // API Key injected by environment\
+        const apiBaseUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent";\
+\
+        // --- View Switching Logic ---\
+        function switchMode(mode) \{\
+            // Update Buttons\
+            ['search', 'compare', 'quiz'].forEach(m => \{\
+                const btn = document.getElementById(`btn-$\{m\}`);\
+                if (m === mode) \{\
+                    btn.classList.remove('bg-white', 'text-stone-600', 'border', 'border-stone-300');\
+                    btn.classList.add('bg-warm-700', 'text-white');\
+                \} else \{\
+                    btn.classList.add('bg-white', 'text-stone-600', 'border', 'border-stone-300');\
+                    btn.classList.remove('bg-warm-700', 'text-white');\
+                \}\
+                \
+                // Toggle Sections\
+                const section = document.getElementById(`section-$\{m\}`);\
+                if (m === mode) \{\
+                    section.classList.remove('hidden');\
+                \} else \{\
+                    section.classList.add('hidden');\
+                \}\
+            \});\
+        \}\
+\
+        // --- MODE 1: Search Logic (Existing) ---\
+        let currentFilter = 'All'; \
+        let searchQuery = '';\
+\
+        document.addEventListener('DOMContentLoaded', () => \{\
+            renderFilters();\
+            renderCards();\
+        \});\
+\
+        function renderFilters() \{\
+            const container = document.getElementById('filterContainer');\
+            const categories = ['All', ...new Set(terminologyData.map(d => d.category))];\
+            container.innerHTML = categories.map(cat => \{\
+                const activeClass = currentFilter === cat ? 'bg-warm-700 text-white shadow-lg' : 'bg-white text-stone-700 border border-stone-300 hover:bg-warm-50';\
+                return `<button onclick="setFilter('$\{cat\}')" class="px-4 py-1.5 rounded-full text-sm font-medium transition-all $\{activeClass\}">$\{cat === 'All' ? '\uc0\u39023 \u31034 \u20840 \u37096 ' : cat\}</button>`;\
+            \}).join('');\
+        \}\
+\
+        function setFilter(cat) \{\
+            currentFilter = cat;\
+            renderFilters();\
+            renderCards();\
+        \}\
+\
+        document.getElementById('searchInput').addEventListener('input', (e) => \{\
+            searchQuery = e.target.value.toLowerCase();\
+            currentFilter = 'All';\
+            renderFilters();\
+            renderCards();\
+        \});\
+\
+        function renderCards() \{\
+            const container = document.getElementById('cardsContainer');\
+            const emptyState = document.getElementById('emptyState');\
+            \
+            const filtered = terminologyData.filter(item => \{\
+                const matchCat = currentFilter === 'All' || item.category === currentFilter;\
+                const matchSearch = !searchQuery || item.term.toLowerCase().includes(searchQuery) || item.def.toLowerCase().includes(searchQuery);\
+                return matchCat && matchSearch;\
+            \});\
+\
+            if (filtered.length === 0) \{\
+                container.innerHTML = '';\
+                emptyState.classList.remove('hidden');\
+                document.getElementById('buttonText').textContent = searchQuery ? `\uc0\u23450 \u32681 \u12300 $\{searchQuery\}\u12301 ` : "\u21205 \u24907 \u26597 \u25214 ";\
+                document.getElementById('expandButton').disabled = !searchQuery;\
+            \} else \{\
+                emptyState.classList.add('hidden');\
+                container.innerHTML = filtered.map(item => `\
+                    <div class="card-hover bg-white rounded-2xl border border-stone-200 shadow-xl p-6 flex flex-col h-full">\
+                        <div class="mb-3"><span class="text-xs font-semibold text-warm-700 bg-warm-100 px-2 py-1 rounded-lg">$\{item.category\}</span></div>\
+                        <h3 class="text-2xl font-bold text-stone-800 mb-2">$\{item.term\}</h3>\
+                        <p class="text-lg text-stone-600 font-medium mb-4 pb-4 border-b border-stone-100">$\{item.def\}</p>\
+                        <div class="mt-auto"><span class="text-xs text-stone-400 font-bold uppercase">\uc0\u20351 \u29992 \u24773 \u22659 </span><p class="text-sm text-stone-500 mt-2">$\{item.useCase\}</p></div>\
+                    </div>\
+                `).join('');\
+            \}\
+        \}\
+\
+        // --- MODE 1 API: Expansion ---\
+        async function fetchAndDisplayExpansion() \{\
+            const query = document.getElementById('searchInput').value.trim();\
+            if (!query) return;\
+\
+            const card = document.getElementById('expansionAssistantCard');\
+            card.classList.remove('hidden');\
+            card.innerHTML = loadingTemplate("AI \uc0\u27491 \u22312 \u26597 \u25214 \u23450 \u32681 ...");\
+\
+            const prompt = `\uc0\u35531 \u28858  UI/UX \u34899 \u35486 \u12300 $\{query\}\u12301 \u25552 \u20379 \u23450 \u32681 \u12289 \u24773 \u22659 \u33287 \u30456 \u38364 \u34899 \u35486 \u12290 `;\
+            const schema = \{\
+                type: "OBJECT",\
+                properties: \{\
+                    term: \{ type: "STRING" \},\
+                    definition: \{ type: "STRING" \},\
+                    useCase: \{ type: "STRING" \},\
+                    relatedTerms: \{ type: "ARRAY", items: \{ type: "STRING" \} \}\
+                \}\
+            \};\
+\
+            try \{\
+                const result = await callGemini(prompt, schema);\
+                card.innerHTML = `\
+                    <div class="mb-3 flex justify-between"><span class="text-xs font-bold text-white bg-warm-700 px-3 py-1 rounded-full uppercase">AI \uc0\u25844 \u20805 \u32080 \u26524 </span></div>\
+                    <h3 class="text-3xl font-black text-warm-700 mb-3">$\{result.term\}</h3>\
+                    <div class="space-y-4 text-stone-700 api-content">\
+                        <div><strong class="block text-sm text-stone-400 uppercase mb-1">\uc0\u23450 \u32681 </strong><p class="text-lg">$\{result.definition\}</p></div>\
+                        <div><strong class="block text-sm text-stone-400 uppercase mb-1">\uc0\u24773 \u22659 </strong><p class="text-lg">$\{result.useCase\}</p></div>\
+                    </div>\
+                    <div class="mt-6 border-t border-warm-200 pt-4 flex gap-2 flex-wrap">\
+                        $\{result.relatedTerms.map(t => `<span class="px-3 py-1 bg-warm-50 text-warm-600 rounded-full text-xs font-bold border border-warm-200">$\{t\}</span>`).join('')\}\
+                    </div>\
+                `;\
+            \} catch (e) \{\
+                card.innerHTML = errorTemplate(e.message);\
+            \}\
+        \}\
+\
+        // --- MODE 2 API: Comparison ---\
+        async function fetchComparison() \{\
+            const termA = document.getElementById('termA').value.trim();\
+            const termB = document.getElementById('termB').value.trim();\
+            if (!termA || !termB) \{\
+                alert("\uc0\u35531 \u36664 \u20837 \u20841 \u20491 \u34899 \u35486 \u36914 \u34892 \u27604 \u36611 ");\
+                return;\
+            \}\
+\
+            const resultContainer = document.getElementById('comparisonResult');\
+            resultContainer.classList.remove('hidden');\
+            resultContainer.innerHTML = loadingTemplate("AI \uc0\u27491 \u22312 \u20998 \u26512 \u20841 \u32773 \u24046 \u30064 ...");\
+\
+            const prompt = `Compare "$\{termA\}" and "$\{termB\}" in UI/UX context. Provide a summary of core differences, a comparison table (as an array of objects), and usage advice.`;\
+            const schema = \{\
+                type: "OBJECT",\
+                properties: \{\
+                    summary: \{ type: "STRING" \},\
+                    table: \{ \
+                        type: "ARRAY", \
+                        items: \{ \
+                            type: "OBJECT", \
+                            properties: \{ feature: \{ type: "STRING" \}, colA: \{ type: "STRING" \}, colB: \{ type: "STRING" \} \} \
+                        \} \
+                    \},\
+                    advice: \{ type: "STRING" \}\
+                \}\
+            \};\
+\
+            try \{\
+                const data = await callGemini(prompt, schema);\
+                resultContainer.innerHTML = `\
+                    <div class="bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden">\
+                        <div class="bg-warm-100 p-6 border-b border-warm-200">\
+                            <h3 class="text-xl font-bold text-warm-800 text-center mb-2">\uc0\u26680 \u24515 \u24046 \u30064 \u32317 \u32080 </h3>\
+                            <p class="text-stone-700 text-center leading-relaxed">$\{data.summary\}</p>\
+                        </div>\
+                        <div class="p-6">\
+                            <div class="overflow-x-auto">\
+                                <table class="w-full text-left border-collapse">\
+                                    <thead>\
+                                        <tr>\
+                                            <th class="p-4 bg-stone-50 text-stone-400 font-bold uppercase text-xs tracking-wider w-1/4">\uc0\u27604 \u36611 \u38917 \u30446 </th>\
+                                            <th class="p-4 bg-stone-50 text-stone-800 font-bold w-1/3 border-l border-stone-200">$\{termA\}</th>\
+                                            <th class="p-4 bg-stone-50 text-stone-800 font-bold w-1/3 border-l border-stone-200">$\{termB\}</th>\
+                                        </tr>\
+                                    </thead>\
+                                    <tbody class="divide-y divide-stone-100">\
+                                        $\{data.table.map(row => `\
+                                            <tr class="hover:bg-stone-50 transition">\
+                                                <td class="p-4 text-stone-500 font-medium">$\{row.feature\}</td>\
+                                                <td class="p-4 text-stone-700 border-l border-stone-100">$\{row.colA\}</td>\
+                                                <td class="p-4 text-stone-700 border-l border-stone-100">$\{row.colB\}</td>\
+                                            </tr>\
+                                        `).join('')\}\
+                                    </tbody>\
+                                </table>\
+                            </div>\
+                        </div>\
+                        <div class="bg-stone-800 p-6 text-stone-300">\
+                            <strong class="text-warm-400 uppercase text-xs tracking-wider block mb-2">\uc0\u23560 \u23478 \u24314 \u35696  (Pro Tip)</strong>\
+                            <p>$\{data.advice\}</p>\
+                        </div>\
+                    </div>\
+                `;\
+            \} catch (e) \{\
+                resultContainer.innerHTML = errorTemplate(e.message);\
+            \}\
+        \}\
+\
+        // --- MODE 3 API: Quiz ---\
+        async function fetchQuiz() \{\
+            const card = document.getElementById('quizCard');\
+            const btn = document.getElementById('startQuizBtn');\
+            card.classList.remove('hidden');\
+            btn.classList.add('hidden'); // Hide start button\
+            card.innerHTML = loadingTemplate("AI \uc0\u27491 \u22312 \u20986 \u38988 \u20013 ...");\
+\
+            // Randomly pick a term to focus the quiz on, or let AI decide generally\
+            const randomTerm = terminologyData[Math.floor(Math.random() * terminologyData.length)].term;\
+            \
+            const prompt = `Generate a multiple-choice UI/UX quiz question focusing on the concept of "$\{randomTerm\}" or general usability principles. Output JSON with question, 4 options, correctIndex (0-3), and explanation.`;\
+            const schema = \{\
+                type: "OBJECT",\
+                properties: \{\
+                    question: \{ type: "STRING" \},\
+                    options: \{ type: "ARRAY", items: \{ type: "STRING" \} \},\
+                    correctIndex: \{ type: "INTEGER" \},\
+                    explanation: \{ type: "STRING" \}\
+                \}\
+            \};\
+\
+            try \{\
+                const data = await callGemini(prompt, schema);\
+                window.currentQuiz = data; // Store for checking\
+                \
+                card.innerHTML = `\
+                    <div class="p-8">\
+                        <div class="flex justify-between items-center mb-6">\
+                            <span class="bg-warm-100 text-warm-700 px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider">Scenario Question</span>\
+                            <span class="text-stone-400 text-sm">Topic: $\{randomTerm\}</span>\
+                        </div>\
+                        <h3 class="text-2xl font-bold text-stone-800 mb-8 leading-snug">$\{data.question\}</h3>\
+                        <div class="space-y-3">\
+                            $\{data.options.map((opt, idx) => `\
+                                <button onclick="checkAnswer($\{idx\})" id="opt-$\{idx\}" class="w-full text-left p-4 rounded-xl border-2 border-stone-100 hover:border-warm-400 hover:bg-warm-50 transition flex items-center group">\
+                                    <span class="w-8 h-8 rounded-full bg-stone-200 text-stone-500 font-bold flex items-center justify-center mr-4 group-hover:bg-warm-200 group-hover:text-warm-700">$\{['A','B','C','D'][idx]\}</span>\
+                                    <span class="text-lg text-stone-600 font-medium group-hover:text-stone-800">$\{opt\}</span>\
+                                </button>\
+                            `).join('')\}\
+                        </div>\
+                        <div id="quizFeedback" class="hidden mt-8 p-6 rounded-xl bg-stone-50 border border-stone-200 animate-fade-in">\
+                            <!-- Feedback injected here -->\
+                        </div>\
+                    </div>\
+                    <div class="bg-stone-50 p-4 border-t border-stone-100 text-center">\
+                        <button onclick="fetchQuiz()" class="text-stone-500 hover:text-warm-600 font-bold text-sm transition">\uc0\u55357 \u56580  \u19979 \u19968 \u38988  (Next Question)</button>\
+                    </div>\
+                `;\
+            \} catch (e) \{\
+                card.innerHTML = errorTemplate(e.message);\
+                btn.classList.remove('hidden');\
+            \}\
+        \}\
+\
+        function checkAnswer(selectedIndex) \{\
+            const data = window.currentQuiz;\
+            const feedback = document.getElementById('quizFeedback');\
+            const isCorrect = selectedIndex === data.correctIndex;\
+            \
+            // Disable all buttons\
+            data.options.forEach((_, idx) => \{\
+                const btn = document.getElementById(`opt-$\{idx\}`);\
+                btn.disabled = true;\
+                if (idx === data.correctIndex) \{\
+                    btn.classList.add('border-green-500', 'bg-green-50');\
+                    btn.querySelector('span:first-child').classList.add('bg-green-500', 'text-white');\
+                \} else if (idx === selectedIndex && !isCorrect) \{\
+                    btn.classList.add('border-red-500', 'bg-red-50');\
+                    btn.querySelector('span:first-child').classList.add('bg-red-500', 'text-white');\
+                \} else \{\
+                    btn.classList.add('opacity-50');\
+                \}\
+            \});\
+\
+            feedback.classList.remove('hidden');\
+            feedback.innerHTML = `\
+                <div class="flex items-start gap-3">\
+                    <div class="text-3xl">$\{isCorrect ? '\uc0\u55356 \u57225 ' : '\u55357 \u56481 '\}</div>\
+                    <div>\
+                        <h4 class="text-lg font-bold $\{isCorrect ? 'text-green-700' : 'text-stone-700'\} mb-1">\
+                            $\{isCorrect ? '\uc0\u31572 \u23565 \u20102 \u65281 ' : '\u20877 \u25509 \u20877 \u21426 \u65281 '\}\
+                        </h4>\
+                        <p class="text-stone-600 leading-relaxed">$\{data.explanation\}</p>\
+                    </div>\
+                </div>\
+            `;\
+        \}\
+\
+        // --- Helper: Shared API Caller ---\
+        async function callGemini(userText, responseSchema) \{\
+            const systemPrompt = "You are a UI/UX expert. Respond in Traditional Chinese (\uc0\u32321 \u39636 \u20013 \u25991 ). Use Google Search grounding to ensure definitions and comparisons are accurate and up-to-date.";\
+            \
+            const payload = \{\
+                contents: [\{ parts: [\{ text: userText \}] \}],\
+                tools: [\{ "google_search": \{\} \}],\
+                systemInstruction: \{ parts: [\{ text: systemPrompt \}] \},\
+                generationConfig: \{\
+                    responseMimeType: "application/json",\
+                    responseSchema: responseSchema\
+                \}\
+            \};\
+\
+            const maxRetries = 3;\
+            let attempt = 0;\
+            while (attempt < maxRetries) \{\
+                try \{\
+                    const response = await fetch(`$\{apiBaseUrl\}?key=$\{apiKey\}`, \{\
+                        method: 'POST',\
+                        headers: \{ 'Content-Type': 'application/json' \},\
+                        body: JSON.stringify(payload)\
+                    \});\
+\
+                    if (!response.ok) \{\
+                         if (response.status === 401 || response.status === 403 || response.status === 400) \{\
+                            throw new Error(`API Auth Error: $\{response.status\}. Check API Key.`);\
+                        \}\
+                        if (response.status === 429) throw new Error("Rate limit exceeded");\
+                        throw new Error(`HTTP $\{response.status\}`);\
+                    \}\
+\
+                    const data = await response.json();\
+                    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;\
+                    if (!text) throw new Error("Empty response from AI");\
+                    return JSON.parse(text);\
+\
+                \} catch (e) \{\
+                    if (e.message.includes("Auth Error")) throw e;\
+                    attempt++;\
+                    if (attempt >= maxRetries) throw e;\
+                    await new Promise(r => setTimeout(r, Math.pow(2, attempt) * 1000));\
+                \}\
+            \}\
+        \}\
+\
+        // --- Helper: Templates ---\
+        function loadingTemplate(msg) \{\
+            return `\
+                <div class="flex flex-col items-center justify-center py-12 text-warm-700 animate-pulse-slow">\
+                    <svg class="animate-spin mb-4 h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">\
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>\
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>\
+                    </svg>\
+                    <span class="text-xl font-bold">$\{msg\}</span>\
+                </div>\
+            `;\
+        \}\
+\
+        function errorTemplate(msg) \{\
+            return `\
+                <div class="text-center py-8 bg-red-50 rounded-xl border border-red-100 p-6">\
+                    <div class="text-4xl mb-2">\uc0\u9888 \u65039 </div>\
+                    <h3 class="text-lg font-bold text-red-800">\uc0\u30332 \u29983 \u37679 \u35492 </h3>\
+                    <p class="text-red-600 mt-1 text-sm">$\{msg\}</p>\
+                </div>\
+            `;\
+        \}\
+    </script>\
+</body>\
+</html>}
