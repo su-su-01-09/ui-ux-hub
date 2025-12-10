@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Terminology Hub (靜態速查版)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration for Custom Warm Color -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Based on #D69A5B
+                        'warm': {
+                            50: '#FDF7F0',
+                            100: '#FAEAD9',
+                            200: '#EED9B3',
+                            500: '#D69A5B',
+                            600: '#C58C4F',
+                            700: '#A87A4F', // Button main / Text accent
+                            800: '#8A643D',
+                        },
+                    },
+                },
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f5f5f4; 
+            color: #44403c; 
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f5f5f4; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d6d3d1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a29e; 
+        }
+
+        .card-hover {
+            transition: all 0.2s ease-in-out;
+            cursor: default; 
+        }
+        .card-hover:hover {
+            transform: translateY(-4px); 
+            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -3px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navbar/Header -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex items-center justify-between">
+                <span class="text-2xl font-black text-warm-700 tracking-tight flex items-center gap-2">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/></svg>
+                    設計術語速查
+                </span>
+                <div class="text-sm font-light text-stone-500 hidden sm:block">UI/UX Terminology Hub (完整靜態速查版)</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8 space-y-12">
+
+        <!-- Header Section -->
+        <div class="max-w-4xl mx-auto space-y-4">
+            <h1 class="text-5xl font-extrabold text-stone-800">UI/UX 核心詞彙資料庫</h1>
+            <p class="text-xl text-stone-600 leading-relaxed">
+                資料庫已新增「可用/禁用狀態」相關詞彙，幫助您更好地定義元件的互動性。
+            </p>
+
+            <!-- Tools Navigation (Only one search button left) -->
+            <div class="flex flex-wrap gap-3 py-4">
+                <button class="px-6 py-2 rounded-full font-bold transition shadow-sm bg-warm-700 text-white cursor-default">
+                    📚 術語速查
+                </button>
+            </div>
+        </div>
+
+        <!-- MODE 1: Search Explorer (Only remaining mode) -->
+        <section id="section-search" class="space-y-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="relative w-full">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-stone-400">🔍</span>
+                    <input type="text" id="searchInput" placeholder="搜尋術語、定義或情境..." 
+                        class="w-full pl-12 pr-4 py-3 border border-stone-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-warm-200 focus:border-warm-500 bg-white text-stone-700 shadow-md transition-all text-lg">
+                </div>
+            </div>
+
+            <!-- Filter Tags -->
+            <div id="filterContainer" class="flex flex-wrap gap-2 pt-2 max-w-4xl mx-auto"></div>
+
+            <!-- Cards Grid -->
+            <div id="cardsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pt-4"></div>
+            
+            <!-- Empty State (Simplified - removed AI expansion button) -->
+            <div id="emptyState" class="hidden text-center py-12 bg-white rounded-2xl p-8 shadow-inner border border-stone-200 max-w-3xl mx-auto">
+                <div class="text-4xl mb-4">📭</div>
+                <h3 class="text-2xl font-bold text-stone-700 mb-2">未在資料庫中找到結果</h3>
+                <p class="text-lg text-stone-500 mb-6">請嘗試其他關鍵字或調整篩選類別。</p>
+            </div>
+            
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-800 text-stone-400 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">UI/UX Terminology Hub (完整靜態速查版)</p>
+            <p class="text-sm text-stone-500">核心資料庫已整理 > 150 個詞彙。</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Data Source (Terminology Data) ---
+        const terminologyData = [
+             // 1. 訊息與回饋 (Messages & Feedback) - 20 terms
+            { category: "1. 訊息與回饋", term: "Modal / Dialog", def: "模態框 / 對話框", useCase: "強制中斷：用於需要使用者做出重大決策的情境。會鎖定背景，需要明確關閉。", related: ["Alert", "Drawer"] },
+            { category: "1. 訊息與回饋", term: "Alert", def: "警告對話框", useCase: "強制中斷：詢問確認破壞性操作（如刪除）的簡短提示，需有明確按鈕回覆。", related: ["Modal", "Toast"] },
+            { category: "1. 訊息與回饋", term: "Toast", def: "吐司通知", useCase: "非中斷：輕量級、短暫、自動消失的操作回饋訊息，不影響使用者當前任務。", related: ["Snackbar", "Tooltip"] },
+            { category: "1. 訊息與回饋", term: "Snackbar", def: "訊息條", useCase: "非中斷：通常位於底部，可包含一個『復原 (Undo)』等即時操作按鈕。", related: ["Toast", "Action"] },
+            { category: "1. 訊息與回饋", term: "Tooltip", def: "工具提示", useCase: "懸浮輔助：滑鼠懸停時出現的小氣泡，提供圖標名稱或簡短說明。", related: ["Hint", "Hover"] },
+            { category: "1. 訊息與回饋", term: "Notification", def: "系統通知", useCase: "用於顯示應用程式或系統的實時更新、提醒或重要資訊。", related: ["Badge", "In-App Message"] },
+            { category: "1. 訊息與回饋", term: "Banner", def: "橫幅公告", useCase: "顯示於頁面頂部或特定區域，用於全站公告、系統狀態或重要提醒，不消失。", related: ["Alert", "Announcement"] },
+            { category: "1. 訊息與回饋", term: "In-App Message", def: "應用內訊息", useCase: "在應用程式內特定時間觸發的訊息，用於教學、促銷或功能介紹。", related: ["Tooltip", "Onboarding"] },
+            { category: "1. 訊息與回饋", term: "Empty State", def: "空狀態", useCase: "當內容或資料為空時顯示的介面，提供說明及引導行動（如：建立第一個項目）。", related: ["Placeholder", "Illustration"] },
+            { category: "1. 訊息與回饋", term: "Skeleton", def: "骨架屏", useCase: "在資料載入時，以灰階矩形代替內容，模擬頁面佈局，提供載入中的視覺回饋。", related: ["Loading", "Progress Bar"] },
+            { category: "1. 訊息與回饋", term: "Progress Bar", def: "進度條", useCase: "顯示操作進度，可以是確定性（0%到100%）或不確定性（無限循環）的載入。", related: ["Spinner", "Loading"] },
+            { category: "1. 訊息與回饋", term: "Spinner", def: "旋轉指示器", useCase: "輕量級的載入中指示器，用於短暫的等待時間或元件級別的載入。", related: ["Loading", "Progress Bar"] },
+            { category: "1. 訊息與回饋", term: "Status Indicator", def: "狀態指示燈", useCase: "通常是小圓點，用於顯示實時狀態（如：在線、離線、忙碌）。", related: ["Badge", "Dot"] },
+            { category: "1. 訊息與回饋", term: "Validation Message", def: "驗證訊息", useCase: "表單提交或欄位失焦時，即時顯示的成功或錯誤提示。", related: ["Inline Validation", "Error State"] },
+            { category: "1. 訊息與回饋", term: "Feedback Loop", def: "回饋迴路", useCase: "使用者執行動作後，系統提供的即時、清晰且適當的回應。", related: ["Micro-interaction", "Usability"] },
+
+            // 2. 表單與輸入 (Forms & Input) - 25 terms 
+            { category: "2. 表單與輸入", term: "Input Field", def: "輸入框 / 文字欄位", useCase: "接收單行或多行文字輸入。", related: ["Form", "Label"] },
+            { category: "2. 表單與輸入", term: "Input", def: "輸入框、文字欄位", useCase: "用於接收單行或多行文字輸入。應用範圍：資料欄位｜Input, Dropdown, 版面佈局｜Center, Breadcrumbs。", related: ["Textarea", "Input Field"] },
+            { category: "2. 表單與輸入", term: "Label", def: "標籤 (表單)", useCase: "描述輸入框應填寫什麼內容，是所有表單元件的名稱。", related: ["Placeholder", "Float Label"] },
+            { category: "2. 表單與輸入", term: "Placeholder", def: "提示文字 / 佔位符", useCase: "輸入框為空時，顯示的提示性文字，通常在使用者輸入後消失。不應用作 Label。", related: ["Label", "Input Field"] },
+            { category: "2. 表單與輸入", term: "Helper Text", def: "輔助說明文字", useCase: "位於輸入框下方，提供額外的提示、格式要求或限制說明，幫助使用者正確填寫。", related: ["Hint", "Error Message"] },
+            { category: "2. 表單與輸入", term: "Hint", def: "提示、線索", useCase: "提供比 'Helper Text' 更具體、更具情境的提示。有時與 Tooltip 結合使用。應用範圍：資料欄位｜Input, Dropdown, 版面佈局｜Center, Breadcrumbs。", related: ["Tooltip", "Helper Text"] },
+            { category: "2. 表單與輸入", term: "Required", def: "必填標記", useCase: "視覺上標記該欄位必須填寫（通常使用紅色星號 * ）。應用範圍：資料欄位｜Input, Dropdown, 版面佈局｜Center, Breadcrumbs。", related: ["Validation", "Asterisk"] },
+            { category: "2. 表單與輸入", term: "Dropdown", def: "下拉選單", useCase: "從預設選項中單選，選項列表初始隱藏，適合選項數量超過 5 個時使用。", related: ["Radio Button", "Select"] },
+            { category: "2. 表單與輸入", term: "Checkbox", def: "複選框", useCase: "用於從一組選項中選擇零個、一個或多個項目。", related: ["Radio Button", "Switch"] },
+            { category: "2. 表單與輸入", term: "Radio Button", def: "單選按鈕", useCase: "從一組選項中互斥且強制選擇一個，適用於選項數量少於 5 個的情境。", related: ["Checkbox", "Group"] },
+            { category: "2. 表單與輸入", term: "Slider", def: "滑桿", useCase: "在預設範圍內調整數值，提供即時視覺回饋。", related: ["Input Field", "Range"] },
+            { category: "2. 表單與輸入", term: "Textarea", def: "多行文字框", useCase: "接收多行文字輸入，通常用於評論、描述等長篇內容。", related: ["Input Field", "Resize"] },
+            { category: "2. 表單與輸入", term: "Search Field", def: "搜尋欄位", useCase: "專門用於輸入搜尋關鍵字的欄位，通常帶有放大鏡圖標。", related: ["Search Icon", "Autosuggest"] },
+            { category: "2. 表單與輸入", term: "Password Field", def: "密碼欄位", useCase: "輸入時隱藏內容（顯示圓點或星號），通常帶有切換顯示/隱藏的圖標。", related: ["Input Field", "Toggle Icon"] },
+            { category: "2. 表單與輸入", term: "DatePicker", def: "日期選擇器", useCase: "接收日期輸入的元件，通常透過行事曆介面選擇。應用範圍：資料欄位｜Input, Dropdown, 版面佈局｜Center, Breadcrumbs。", related: ["Calendar", "Input"] },
+            { category: "2. 表單與輸入", term: "Time Picker", def: "時間選擇器", useCase: "用於輸入或選擇時間的元件。", related: ["Clock", "Input"] },
+            { category: "2. 表單與輸入", term: "Stepper", def: "步進器", useCase: "用於增加或減少數值的輸入控制，通常適用於數量、頁碼等。", related: ["Increment", "Decrement"] },
+            { category: "2. 表單與輸入", term: "Multi-select", def: "多選下拉選單", useCase: "允許使用者在下拉列表中選擇多個項目。", related: ["Dropdown", "Tag"] },
+            { category: "2. 表單與輸入", term: "File Upload", def: "檔案上傳", useCase: "用於選擇和上傳本地檔案的元件，可能包含拖放區域。", related: ["Drag & Drop", "Progress Bar"] },
+            { category: "2. 表單與輸入", term: "Form Group", def: "表單群組", useCase: "將相關聯的表單欄位在視覺或邏輯上包裹在一起。", related: ["Fieldset", "Section"] },
+            { category: "2. 表單與輸入", term: "Validation", def: "表單驗證", useCase: "檢查使用者輸入是否符合預期格式、長度或範圍的過程。", related: ["Error State", "Pattern"] },
+            { category: "2. 表單與輸入", term: "Switch / Toggle", def: "開關切換", useCase: "用於切換單一的開/關狀態，通常用於立即生效的設定。應用範圍：資料欄位｜Input, Dropdown, 版面佈局｜Center, Breadcrumbs。", related: ["Checkbox", "Toggle"] },
+            
+            // 3. 導航與結構 (Navigation & Structure) - 25 terms 
+            { category: "3. 導航與結構", term: "Breadcrumbs", def: "麵包屑導航", useCase: "位於頁面頂部，顯示使用者在網站中的層級路徑，幫助追蹤位置。應用範圍：版面佈局｜Center, Breadcrumbs。", related: ["Hierarchy", "Path"] },
+            { category: "3. 導航與結構", term: "Tabs", def: "標籤頁", useCase: "用於切換同一區塊下的不同內容視圖，將相關內容分組。應用範圍：版面佈局｜Center, Breadcrumbs。", related: ["Navigation", "Panel"] },
+            { category: "3. 導航與結構", term: "Sidebar", def: "側邊欄", useCase: "主要或次要導航的垂直菜單，常駐於頁面一側。應用範圍：版面佈局｜Center, Breadcrumbs。", related: ["Drawer", "Navigation"] },
+            { category: "3. 導航與結構", term: "Accordion", def: "手風琴", useCase: "用於顯示多組標題，點擊時展開/收合內容，適合 FAQ。應用範圍：版面佈局｜Center, Breadcrumbs。", related: ["Collapse", "Expand"] },
+            { category: "3. 導航與結構", term: "Header", def: "頁面頭部", useCase: "包含標誌、主要導航和關鍵操作（如登入、購物車）的頂部區域。應用範圍：版面佈局｜Center, Breadcrumbs。", related: ["Masthead", "Navbar"] },
+            { category: "3. 導航與結構", term: "Footer", def: "頁面底部", useCase: "包含版權資訊、次要連結、法律條款等資訊的底部區域。應用範圍：版面佈局｜Center, Breadcrumbs。", related: ["Utility Nav", "Legal"] },
+            { category: "3. 導航與結構", term: "Nav", def: "導航", useCase: "提供應用程式或網站核心區域的連結，幫助使用者切換頁面。應用範圍：版面佈局｜Center, Breadcrumbs。", related: ["Navigation Bar", "Menu"] },
+            { category: "3. 導航與結構", term: "Masthead", def: "主視覺區", useCase: "大型橫幅或頂部區域，通常用於品牌宣傳或頁面主要焦點。", related: ["Hero Section", "Banner"] },
+            { category: "3. 導航與結構", term: "Primary Nav", def: "主導航", useCase: "應用程式或網站最核心、最高層級的導航連結。", related: ["Header", "Global Nav"] },
+            { category: "3. 導航與結構", term: "Sub-Nav", def: "次級導航", useCase: "在主導航下的第二層級或頁面內部的子導航。", related: ["Tabs", "In-page Nav"] },
+            { category: "3. 導航與結構", term: "Mega Menu", def: "巨型選單", useCase: "大型下拉式選單，用於組織大量分類連結或視覺內容。", related: ["Dropdown", "Sitemap"] },
+            { category: "3. 導航與結構", term: "Hamburger Menu", def: "漢堡選單", useCase: "用於收合導航連結的圖標（三條水平線），常見於行動端。", related: ["Toggle", "Mobile Nav"] },
+            { category: "3. 導航與結構", term: "Bottom Nav (Mobile)", def: "底部導航 (行動)", useCase: "固定在行動裝置底部的導航列，提供核心功能快速切換。", related: ["Tab Bar", "Fixed"] },
+            { category: "3. 導航與結構", term: "Page Container", def: "頁面容器", useCase: "包裹整個頁面內容的頂級佈局元素，控制頁面最大寬度。", related: ["Wrapper", "Max-width"] },
+            { category: "3. 導航與結構", term: "Section", def: "區塊", useCase: "將頁面內容劃分為獨立的主題或內容區域。", related: ["Group", "Spacing"] },
+            { category: "3. 導航與結構", term: "Group", def: "群組", useCase: "在 Figma 中用於邏輯上包裹相關元件的畫框或層級。", related: ["Frame", "Container"] },
+            { category: "3. 導航與結構", term: "Divider", def: "分隔線", useCase: "視覺上分離內容或元件的水平或垂直線。", related: ["Separator", "Rule"] },
+            { category: "3. 導航與結構", term: "Frame (Figma)", def: "畫框", useCase: "Figma 的核心容器概念，類似 `div` 或群組，可用於建立元件或頁面。", related: ["Group", "Artboard"] },
+            { category: "3. 導航與結構", term: "Auto Layout", def: "自動佈局", useCase: "Figma 功能，允許容器根據內容自動調整間距和大小。", related: ["Flexbox", "Spacing"] },
+            { category: "3. 導航與結構", term: "Z-Index", def: "Z 軸索引", useCase: "控制元件在垂直堆疊順序上的層級，數值越高越靠近使用者（在頂層）。", related: ["Stacking Context", "Layer"] },
+            
+            // 4. 元件與內容 (Components & Content) - 30 terms 
+            { category: "4. 元件與內容", term: "Card", def: "卡片", useCase: "獨立的內容容器，用於展示相關資訊組（如標題、圖片、描述和操作）。應用範圍：資料呈現｜Table, List, Card。", related: ["Tile", "Container"] },
+            { category: "4. 元件與內容", term: "Tile", def: "磁貼", useCase: "類似卡片，但通常用於更緊湊或網格佈局，常只包含圖標和標題。", related: ["Grid Item", "Card"] },
+            { category: "4. 元件與內容", term: "List", def: "列表", useCase: "用於展示一系列相關聯的項目，通常為單欄或簡單結構。應用範圍：資料呈現｜Table, List, Card。", related: ["Row", "Collection"] },
+            { category: "4. 元件與內容", term: "List Item", def: "列表項目", useCase: "清單中的單一元件，用於展示結構化數據或選項。", related: ["Row", "Collection"] },
+            { category: "4. 元件與內容", term: "Table", def: "表格", useCase: "用於展示結構化、多欄位的資料，便於比較和排序。應用範圍：資料呈現｜Table, List, Card。", related: ["Grid", "Data View"] },
+            { category: "4. 元件與內容", term: "Avatar", def: "頭像", useCase: "用於代表使用者、品牌或實體的小圖片或圖標。", related: ["Profile", "Image"] },
+            { category: "4. 元件與內容", term: "Badge", def: "徽章", useCase: "用於標記狀態、計數或簡短屬性的小型標籤（如：新訊息數量）。", related: ["Status", "Pill"] },
+            { category: "4. 元件與內容", term: "Chip", def: "晶片 / 標籤", useCase: "小型、緊湊的互動元件，用於篩選、輸入或簡短屬性（可移除）。", related: ["Tag", "Filter"] },
+            { category: "4. 元件與內容", term: "Tag", def: "標籤 (分類)", useCase: "用於對內容進行分類或標記的非互動性文字標籤。", related: ["Category", "Label"] },
+            { category: "4. 元件與內容", term: "Thumbnail", def: "縮圖", useCase: "用於預覽更大圖像或內容的小版本圖片。", related: ["Preview", "Image"] },
+            { category: "4. 元件與內容", term: "Gallery", def: "圖庫", useCase: "以網格形式展示多張圖片的介面。", related: ["Grid", "Image"] },
+            { category: "4. 元件與內容", term: "Carousel", def: "輪播", useCase: "水平滑動展示多個內容項的元件，常見於首頁。", related: ["Slider", "Banner"] },
+            { category: "4. 元件與內容", term: "Pagination", def: "分頁器", useCase: "用於導航至大量內容清單的不同頁碼。", related: ["Next/Prev", "Page Number"] },
+            { category: "4. 元件與內容", term: "Filter", def: "篩選器", useCase: "用於收窄或調整列表中顯示的內容條件的元件。", related: ["Sort", "Search"] },
+            { category: "4. 元件與內容", term: "Sort", def: "排序", useCase: "用於變更列表中項目顯示順序的控制項（如：按日期、按價格）。", related: ["Order", "Dropdown"] },
+            { category: "4. 元件與內容", term: "Action Menu", def: "操作選單", useCase: "當空間有限時，將多個次要操作收納在一個按鈕下的選單。", related: ["Dropdown", "Kebab"] },
+            { category: "4. 元件與內容", term: "Kebab Menu", def: "烤肉串選單", useCase: "垂直排列的三個圓點圖標 (...), 用於顯示與該元件相關的次要操作。", related: ["Meatball", "Context Menu"] },
+            { category: "4. 元件與內容", term: "Context Menu", def: "上下文選單", useCase: "在特定元件上點擊或右鍵點擊時出現的相關操作列表。", related: ["Action Menu", "Dropdown"] },
+            { category: "4. 元件與內容", term: "Read More", def: "閱讀更多", useCase: "用於收合長篇文字，僅顯示部分內容，點擊後展開。", related: ["Truncate", "Collapse"] },
+            { category: "4. 元件與內容", term: "Metadata", def: "元數據", useCase: "描述主要內容的數據，例如發布日期、作者、閱讀時間等。", related: ["Secondary Text", "Caption"] },
+            { category: "4. 元件與內容", term: "Primary Action", def: "主要行動", useCase: "頁面上最重要、最高優先級的點擊目標，通常使用 Primary Color。", related: ["CTA", "Button"] },
+            { category: "4. 元件與內容", term: "Secondary Action", def: "次要行動", useCase: "頁面上的輔助性或備用點擊目標，視覺權重低於 Primary Action。", related: ["Button", "Tertiary"] },
+            
+            // 5. 樣式與狀態 (Styles & States) - 42 terms (Includes new CSV terms + ENABLE/DISABLE/INACTIVE + Surface terms + Gray Scale)
+            { category: "5. 樣式與狀態", term: "Primary Color", def: "主要品牌色", useCase: "用於關鍵行動、品牌識別和最高優先級的按鈕填充。", related: ["Secondary Color", "Token"] },
+            { category: "5. 樣式與狀態", term: "Accent Color", def: "強調色 / 點綴色", useCase: "用於強調關鍵行動 (CTA)、連結或選取狀態的顏色。", related: ["Primary Color", "Contrast"] },
+            
+            <!-- NEW TERM: Gray Scale / Grayscale -->
+            { category: "5. 樣式與狀態", term: "Gray Scale / Grayscale", def: "灰階 / 灰度", useCase: "從黑到白之間的單一色相顏色範圍。是建立中性色系統和定義禁用、次要狀態的基礎。", related: ["Neutral Colors", "Monochrome"] },
+
+            { category: "5. 樣式與狀態", term: "Neutral Colors", def: "中性色 / 灰階", useCase: "用於背景、邊框、線條和文字的灰色系，構建介面骨架。通常基於 Gray Scale 定義。", related: ["White Space", "Surface"] },
+            
+            { category: "5. 樣式與狀態", term: "Surface", def: "介面表面", useCase: "在設計系統中，指元件、卡片或對話框等互動元素所佔據的平面層次。", related: ["Container", "Elevation"] },
+            
+            { category: "5. 樣式與狀態", term: "Background", def: "背景", useCase: "整個應用程式或頁面最底層的顏色或紋理，通常為中性色。", related: ["Surface", "Canvas"] },
+
+            { category: "5. 樣式與狀態", term: "Container", def: "容器", useCase: "包裹一組相關內容或元件的區塊，常有背景色或邊框以區分層次。", related: ["Card", "Group"] },
+
+            { category: "5. 樣式與狀態", term: "Icon", def: "圖標", useCase: "簡潔的視覺符號，用於代表功能、狀態或內容類型。", related: ["SVG", "Glyph"] },
+            { category: "5. 樣式與狀態", term: "Outline", def: "邊框 / 描邊", useCase: "元件外圍的線條，常在 Focus 狀態下使用來提升可訪問性。", related: ["Border", "Focus State"] },
+            { category: "5. 樣式與狀態", term: "Shadow", def: "陰影", useCase: "用於模擬光照和深度，使元件看起來浮動在背景之上。", related: ["Elevation", "Depth"] },
+            { category: "5. 樣式與狀態", term: "Elevation", def: "立體高度", useCase: "設計系統中定義的 Z 軸層級，通過陰影大小和強度來表示。", related: ["Shadow", "Z-Index"] },
+            { category: "5. 樣式與狀態", term: "Border Radius", def: "邊角半徑", useCase: "用於控制元件邊角的圓潤程度。", related: ["Rounded", "Shape"] },
+            { category: "5. 樣式與狀態", term: "Opacity", def: "不透明度", useCase: "控制元件或顏色的透明度，通常用於 Disabled 狀態或背景模糊。", related: ["Alpha", "Transparency"] },
+            { category: "5. 樣式與狀態", term: "Breakpoint", def: "斷點", useCase: "在響應式設計中，佈局或樣式發生變化的特定螢幕寬度（如 sm, md, lg）。", related: ["Responsive", "Media Query"] },
+            { category: "5. 樣式與狀態", term: "Default State", def: "預設狀態", useCase: "元件的初始、未互動的狀態。", related: ["Normal", "Initial"] },
+            
+            { category: "5. 樣式與狀態", term: "Enabled State", def: "可用狀態 / 已啟用", useCase: "元件的預設狀態，表示該元件功能完整且使用者可以點擊、輸入或操作。", related: ["Default State", "Active"] },
+
+            { category: "5. 樣式與狀態", term: "Hover State", def: "懸停狀態", useCase: "滑鼠游標停留在元件上時的視覺變化，提供回饋。", related: ["Mouseover", "Interaction"] },
+            { category: "5. 樣式與狀態", term: "Pressed State", def: "按下狀態", useCase: "滑鼠點擊或手指按下時的視覺變化，表示正在啟動動作。", related: ["Active", "Clicked"] },
+            { category: "5. 樣式與狀態", term: "Focus State", def: "聚焦狀態", useCase: "元件透過 Tab 鍵導航選中時的狀態，對於鍵盤操作至關重要。", related: ["Outline", "Accessibility"] },
+            { category: "5. 樣式與狀態", term: "Active State", def: "啟用狀態", useCase: "表示元件目前被選中或處於啟用狀態（如：當前的標籤頁）。", related: ["Selected", "Current"] },
+            
+            { category: "5. 樣式與狀態", term: "Disabled State", def: "禁用狀態 / 無效", useCase: "用於元件無法互動時的狀態，通常呈現低對比的視覺樣式（如灰階或低透明度），目的是阻止使用者操作。", related: ["Inactive", "Grayed Out"] },
+            
+            { category: "5. 樣式與狀態", term: "Inactive State", def: "非活躍狀態 / 未選中", useCase: "表示元件目前沒有被選中或作用，但功能上仍處於可用狀態，隨時可以被切換到 Active。", related: ["Default", "Active State"] },
+            
+            { category: "5. 樣式與狀態", term: "Token", def: "設計代碼", useCase: "用於儲存和管理設計屬性（如顏色、間距、字體）的命名變數。", related: ["Design System", "Variable"] },
+            { category: "5. 樣式與狀態", term: "Variant", def: "變體", useCase: "在 Figma 中，指同一元件的不同視覺表現（如：主要按鈕 vs 次要按鈕）。", related: ["Component", "Prop"] },
+            { category: "5. 樣式與狀態", term: "Spacing", def: "間距", useCase: "元件或佈局之間的距離（Margin 或 Padding）。", related: ["Gutter", "Padding"] },
+            { category: "5. 樣式與狀態", term: "Gutter", def: "欄間距", useCase: "網格系統中，列與列之間的固定間距。", related: ["Grid", "Spacing"] },
+            { category: "5. 樣式與狀態", term: "Padding", def: "內邊距", useCase: "內容與元件邊界之間的空間。", related: ["Spacing", "Inner"] },
+            { category: "5. 樣式與狀態", term: "Margin", def: "外邊距", useCase: "元件邊界與其他元件之間的空間。", related: ["Spacing", "Outer"] },
+            { category: "5. 樣式與狀態", term: "Center", def: "居中對齊", useCase: "內容在水平或垂直方向上置中。應用範圍：版面佈局｜Center, Breadcrumbs。", related: ["Alignment", "Middle"] },
+
+            // 6. 排版與文字 (Typography & Text Styles) - NEW CATEGORY 
+            { category: "6. 排版與文字", term: "Text", def: "文字", useCase: "所有介面中用於傳達訊息的字體內容。", related: ["Regular", "Emphasized", "Caption"] },
+            { category: "6. 排版與文字", term: "Regular", def: "標準字重", useCase: "應用範圍：文字狀態｜Regular, Emphasized。用於一般內文、資料顯示等。", related: ["Weight", "Normal"] },
+            { category: "6. 排版與文字", term: "Emphasized", def: "強調", useCase: "應用範圍：文字狀態｜Regular, Emphasized。用於突出顯示關鍵詞或重要訊息。", related: ["Bold", "Highlight"] },
+            { category: "6. 排版與文字", term: "Notification (Text Style)", def: "通知 (文字樣式)", useCase: "應用範圍：文字狀態｜Regular, Emphasized。用於系統通知或即時提醒的文字格式。", related: ["Alert", "Message"] },
+            { category: "6. 排版與文字", term: "Caption", def: "輔助說明 / 圖說", useCase: "用於圖片說明、版權資訊、或表單的 Helper Text。目標是低權重，不干擾主體內容。", related: ["Helper Text", "Metadata"] },
+            { category: "6. 排版與文字", term: "Directions", def: "說明 / 導引", useCase: "用於指導使用者該怎麼做，提供 Guidance。應用範圍：文字狀態｜Regular, Emphasized。", related: ["Guidance", "Instruction"] },
+            { category: "6. 排版與文字", term: "Heading (H1~H6)", def: "區分內容主題與結構", useCase: "用於頁面標題、區塊標題，建立清晰的閱讀層級。其中以 H1 權重最高。應用範圍：文字狀態｜Regular, Emphasized。", related: ["Title", "Hierarchy"] },
+            { category: "6. 排版與文字", term: "Button Text", def: "行動導向文字", useCase: "必須清晰易讀，並且通常使用較粗的字重來增加按鈕的點擊感。應用範圍：文字狀態｜Regular, Emphasized。", related: ["CTA", "Action"] },
+            { category: "6. 排版與文字", term: "Label Text", def: "標註作用文字", useCase: "用於表單元件的 Label，需要清晰指引但權重低於標題。應用範圍：文字狀態｜Regular, Emphasized。", related: ["Form Label", "Input Label"] },
+            { category: "6. 排版與文字", term: "Overline", def: "內容前導或分類", useCase: "用於標題上方的小標籤，給予內容主題或分類。應用範圍：文字狀態｜Regular, Emphasized。", related: ["Category Tag", "Pre-Title"] },
+            { category: "6. 排版與文字", term: "Display", def: "展示或數據文字", useCase: "應用範圍：文字狀態｜Regular, Emphasized。用於大型數據、儀表板或醒目的展示性文字。", related: ["Huge Text", "Metrics"] },
+        ];
+        
+        // --- Search & Filter Logic ---
+        let currentFilter = 'All'; 
+        let searchQuery = '';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFilters();
+            renderCards();
+        });
+
+        function renderFilters() {
+            const container = document.getElementById('filterContainer');
+            // Get unique categories and add 'All'
+            const categories = ['All', ...new Set(terminologyData.map(d => d.category))].sort((a, b) => {
+                if (a === 'All') return -1;
+                // Sort by the leading number (e.g., "1. " vs "2. ")
+                const numA = parseInt(a.match(/^\d+/)?.[0] || 0);
+                const numB = parseInt(b.match(/^\d+/)?.[0] || 0);
+                if (numA !== numB) return numA - numB;
+                return a.localeCompare(b);
+            });
+            
+            container.innerHTML = categories.map(cat => {
+                const activeClass = currentFilter === cat ? 'bg-warm-700 text-white shadow-lg' : 'bg-white text-stone-700 border border-stone-300 hover:bg-warm-50';
+                return `<button onclick="setFilter('${cat}')" class="px-4 py-1.5 rounded-full text-sm font-medium transition-all ${activeClass}">${cat === 'All' ? '顯示全部' : cat}</button>`;
+            }).join('');
+        }
+
+        function setFilter(cat) {
+            searchQuery = ''; // Clear search on filter change
+            document.getElementById('searchInput').value = '';
+            currentFilter = cat;
+            renderFilters();
+            renderCards();
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase();
+            currentFilter = 'All'; // Reset filter on search
+            renderFilters();
+            renderCards();
+        });
+
+        function renderCards() {
+            const container = document.getElementById('cardsContainer');
+            const emptyState = document.getElementById('emptyState');
+            
+            const filtered = terminologyData.filter(item => {
+                const matchCat = currentFilter === 'All' || item.category === currentFilter;
+                // Search term matches term, definition, or use case
+                const matchSearch = !searchQuery || 
+                                    item.term.toLowerCase().includes(searchQuery) || 
+                                    item.def.toLowerCase().includes(searchQuery) ||
+                                    item.useCase.toLowerCase().includes(searchQuery);
+
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                container.innerHTML = filtered.map(item => `
+                    <div class="card-hover bg-white rounded-2xl border border-stone-200 shadow-xl p-6 flex flex-col h-full">
+                        <div class="mb-3"><span class="text-xs font-semibold text-warm-700 bg-warm-100 px-2 py-1 rounded-lg">${item.category}</span></div>
+                        <h3 class="text-2xl font-bold text-stone-800 mb-2">${item.term}</h3>
+                        <p class="text-lg text-stone-600 font-medium mb-4 pb-4 border-b border-stone-100">${item.def}</p>
+                        <div class="mt-auto"><span class="text-xs text-stone-400 font-bold uppercase">使用情境</span><p class="text-sm text-stone-500 mt-2">${item.useCase}</p></div>
+                    </div>
+                `).join('');
+            }
+        }
+    </script>
+</body>
+</html>
